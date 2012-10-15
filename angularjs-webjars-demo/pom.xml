@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+      http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jdriven.webjars-demo</groupId>
+  <artifactId>angularjs-webjars-demo</artifactId>
+  <version>0.1-SNAPSHOT</version>
+
+  <packaging>war</packaging>
+  
+  <properties>
+    <angularjs.version>1.0.2</angularjs.version>
+    <js.extension>.js</js.extension>
+  </properties>
+
+  <dependencies>
+    <dependency>
+	  <groupId>org.angularjs</groupId>
+	  <artifactId>angularjs</artifactId>
+	  <version>1.0.2</version>
+	</dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+	  <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+		    <failOnMissingWebXml>false</failOnMissingWebXml>
+
+            <webResources>
+              <resource>
+                <directory>src/main/webapp</directory>
+				<filtering>true</filtering>
+              </resource>
+            </webResources>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.mortbay.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <version>8.1.7.v20120910</version>
+        </plugin>
+	  </plugins>
+	</pluginManagement>
+  </build>
+  
+</project>
+

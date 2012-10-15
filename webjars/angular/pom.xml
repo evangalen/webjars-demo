@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+      http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.angularjs</groupId>
+  <artifactId>angular</artifactId>
+  <version>1.0.2</version>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/resources</directory>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+  
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+
+        <configuration>
+          <outputDirectory>${project.build.outputDirectory}/META-INF/resources/weblibs/${project.groupId}/${project.artifactId}/${project.version}</outputDirectory>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+
+        <configuration>
+          <excludes> <!-- exclude the minified .js files in the default jar -->
+            <exclude>**/*.min.js</exclude>
+          </excludes>
+        </configuration>
+
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>minified</classifier>
+
+              <excludes> <!-- revert default exclusion of minified .js files -->
+                <exclude>!**/*.min.js</exclude>
+              </excludes>
+              <includes> <!-- then only include the minified .js files -->
+                <include>**/*.min.js</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+
